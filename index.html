@@ -1,0 +1,1134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lily Ottinger | 周盈莉</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --sakura: #D4A0B5;
+            --sakura-light: #E8C7D5;
+            --sakura-pale: #F2DFE8;
+            --sakura-wash: #F8EDF2;
+            --navy: #1B2A4A;
+            --navy-light: #2D4470;
+            --navy-faint: rgba(27, 42, 74, 0.06);
+            --white: #FEFBFC;
+            --text-secondary: #6B5A62;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            background-color: var(--white);
+            color: var(--navy);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* ── Sakura petal floating animation ── */
+        .petals-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .petal {
+            position: absolute;
+            top: -40px;
+            opacity: 0;
+            animation: fall linear infinite;
+        }
+
+        .petal svg {
+            width: 18px;
+            height: 18px;
+            fill: var(--sakura);
+            opacity: 0.35;
+        }
+
+        @keyframes fall {
+            0% {
+                opacity: 0;
+                transform: translateX(0) rotate(0deg);
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
+                transform: translateX(80px) rotate(720deg);
+                top: 100vh;
+            }
+        }
+
+        /* ── Navigation ── */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 100;
+            background: rgba(254, 251, 252, 0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--sakura-light);
+            transition: all 0.3s ease;
+        }
+
+        nav .nav-inner {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0.9rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .nav-name {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--navy);
+            text-decoration: none;
+            letter-spacing: 0.02em;
+        }
+
+        nav .nav-name span {
+            color: var(--sakura);
+            margin-left: 0.4rem;
+            font-size: 1rem;
+        }
+
+        nav .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        nav .nav-links a {
+            text-decoration: none;
+            color: var(--navy);
+            font-size: 0.85rem;
+            font-weight: 400;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            transition: color 0.2s;
+        }
+
+        nav .nav-links a:hover {
+            color: var(--sakura);
+        }
+
+        /* ── Hero Section ── */
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(165deg, var(--sakura-wash) 0%, var(--sakura-pale) 40%, var(--sakura) 100%);
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '話中國';
+            position: absolute;
+            right: -2%;
+            bottom: -5%;
+            font-size: clamp(10rem, 25vw, 22rem);
+            font-weight: 700;
+            color: var(--navy);
+            opacity: 0.04;
+            line-height: 1;
+            letter-spacing: -0.02em;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .hero-blossom {
+            width: 60px;
+            height: 60px;
+            margin: 0 auto 2rem;
+            opacity: 0.7;
+        }
+
+        .hero-blossom svg {
+            width: 100%;
+            height: 100%;
+            fill: var(--navy);
+        }
+
+        .hero h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(3rem, 7vw, 5.5rem);
+            font-weight: 600;
+            color: var(--navy);
+            letter-spacing: -0.01em;
+            line-height: 1.1;
+            margin-bottom: 0.3rem;
+        }
+
+        .hero .chinese-name {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(1.2rem, 2.5vw, 1.8rem);
+            color: var(--navy);
+            opacity: 0.5;
+            letter-spacing: 0.3em;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero .tagline {
+            font-size: 1.05rem;
+            font-weight: 300;
+            color: var(--navy);
+            opacity: 0.75;
+            max-width: 500px;
+            margin: 0 auto;
+            letter-spacing: 0.02em;
+        }
+
+        .hero .scroll-indicator {
+            position: absolute;
+            bottom: 2.5rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            opacity: 0.4;
+            animation: bob 2s ease-in-out infinite;
+        }
+
+        .hero .scroll-indicator span {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--navy);
+        }
+
+        .hero .scroll-indicator svg {
+            width: 20px;
+            height: 20px;
+            stroke: var(--navy);
+        }
+
+        @keyframes bob {
+            0%, 100% { transform: translateX(-50%) translateY(0); }
+            50% { transform: translateX(-50%) translateY(6px); }
+        }
+
+        /* ── Sections ── */
+        section {
+            position: relative;
+            z-index: 1;
+        }
+
+        .section-inner {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 5rem 2rem;
+        }
+
+        .section-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.2rem;
+            font-weight: 600;
+            color: var(--navy);
+            margin-bottom: 0.3rem;
+        }
+
+        .section-title-chinese {
+            font-size: 0.95rem;
+            color: var(--sakura);
+            letter-spacing: 0.15em;
+            margin-bottom: 2.5rem;
+        }
+
+        .section-divider {
+            width: 40px;
+            height: 2px;
+            background: var(--sakura);
+            margin-bottom: 2rem;
+        }
+
+        /* ── About ── */
+        .about {
+            background: var(--white);
+        }
+
+        .about p {
+            font-size: 1.05rem;
+            line-height: 1.8;
+            color: var(--navy);
+            opacity: 0.85;
+            margin-bottom: 1.2rem;
+            font-weight: 300;
+        }
+
+        .about p strong {
+            font-weight: 500;
+            opacity: 1;
+        }
+
+        /* ── Writing ── */
+        .writing {
+            background: var(--sakura-wash);
+        }
+
+        .articles-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+        }
+
+        .article-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            padding: 1.15rem 0;
+            border-bottom: 1px solid rgba(27, 42, 74, 0.08);
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.2s ease;
+            gap: 1rem;
+        }
+
+        .article-item:first-child {
+            border-top: 1px solid rgba(27, 42, 74, 0.08);
+        }
+
+        .article-item:hover {
+            padding-left: 0.75rem;
+            border-color: var(--sakura);
+        }
+
+        .article-item:hover .article-title {
+            color: var(--navy-light);
+        }
+
+        .article-info {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .article-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--navy);
+            transition: color 0.2s;
+            line-height: 1.3;
+        }
+
+        .article-subtitle {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            font-weight: 300;
+            margin-top: 0.15rem;
+        }
+
+        .article-coauthors {
+            font-size: 0.78rem;
+            color: var(--sakura);
+            font-weight: 400;
+            margin-top: 0.15rem;
+        }
+
+        .article-meta {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            white-space: nowrap;
+            font-weight: 300;
+            flex-shrink: 0;
+        }
+
+        .article-year-divider {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: var(--sakura);
+            padding: 1.5rem 0 0.5rem;
+            letter-spacing: 0.1em;
+        }
+
+        /* ── Experience ── */
+        .experience {
+            background: var(--white);
+        }
+
+        .experience-item {
+            margin-bottom: 2.5rem;
+        }
+
+        .experience-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .experience-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 0.2rem;
+        }
+
+        .experience-org {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--navy);
+        }
+
+        .experience-dates {
+            font-size: 0.82rem;
+            color: var(--text-secondary);
+            font-weight: 300;
+            white-space: nowrap;
+        }
+
+        .experience-role {
+            font-size: 0.9rem;
+            font-style: italic;
+            color: var(--text-secondary);
+            margin-bottom: 0.6rem;
+        }
+
+        .experience-desc {
+            font-size: 0.92rem;
+            line-height: 1.7;
+            color: var(--navy);
+            opacity: 0.8;
+            font-weight: 300;
+        }
+
+        .experience-desc ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .experience-desc li {
+            padding-left: 1.2rem;
+            position: relative;
+            margin-bottom: 0.35rem;
+        }
+
+        .experience-desc li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0.55em;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--sakura);
+        }
+
+        .experience-desc a {
+            color: var(--sakura);
+            text-decoration: none;
+            font-weight: 400;
+        }
+
+        .experience-desc a:hover {
+            text-decoration: underline;
+        }
+
+        .experience-separator {
+            width: 100%;
+            height: 1px;
+            background: rgba(27, 42, 74, 0.08);
+            margin: 2.5rem 0;
+        }
+
+        /* ── Projects ── */
+        .project-card {
+            border: 1px solid var(--sakura-light);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            transition: border-color 0.2s;
+        }
+
+        .project-card:hover {
+            border-color: var(--sakura);
+        }
+
+        .project-card a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .project-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--navy);
+            margin-bottom: 0.3rem;
+        }
+
+        .project-tag {
+            display: inline-block;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--sakura);
+            background: var(--sakura-wash);
+            padding: 0.15rem 0.5rem;
+            border-radius: 3px;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        .project-desc {
+            font-size: 0.9rem;
+            line-height: 1.6;
+            color: var(--navy);
+            opacity: 0.8;
+            font-weight: 300;
+        }
+
+        /* ── Contact ── */
+        .contact {
+            background: var(--navy);
+            color: var(--sakura-pale);
+        }
+
+        .contact .section-title {
+            color: var(--sakura-pale);
+        }
+
+        .contact .section-title-chinese {
+            color: var(--sakura);
+            opacity: 0.6;
+        }
+
+        .contact .section-divider {
+            background: var(--sakura);
+            opacity: 0.4;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 1.5rem;
+        }
+
+        .contact-item {
+            display: flex;
+            flex-direction: column;
+            gap: 0.3rem;
+        }
+
+        .contact-label {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: var(--sakura);
+            opacity: 0.6;
+        }
+
+        .contact-value {
+            font-size: 0.95rem;
+            font-weight: 300;
+        }
+
+        .contact-value a {
+            color: var(--sakura-light);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .contact-value a:hover {
+            color: var(--sakura-pale);
+        }
+
+        /* ── Footer ── */
+        footer {
+            background: var(--navy);
+            border-top: 1px solid rgba(212, 160, 181, 0.1);
+            text-align: center;
+            padding: 1.5rem 2rem;
+        }
+
+        footer .footer-blossom svg {
+            width: 24px;
+            height: 24px;
+            fill: var(--sakura);
+            opacity: 0.3;
+        }
+
+        /* ── Mobile ── */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+
+        .mobile-menu-btn svg {
+            width: 22px;
+            height: 22px;
+            stroke: var(--navy);
+        }
+
+        @media (max-width: 640px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            nav .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: rgba(254, 251, 252, 0.95);
+                backdrop-filter: blur(20px);
+                flex-direction: column;
+                padding: 1.5rem 2rem;
+                gap: 1.2rem;
+                border-bottom: 1px solid var(--sakura-light);
+            }
+
+            nav .nav-links.open {
+                display: flex;
+            }
+
+            .section-inner {
+                padding: 3.5rem 1.5rem;
+            }
+
+            .article-item {
+                flex-direction: column;
+                gap: 0.2rem;
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Floating sakura petals -->
+<div class="petals-container" id="petals"></div>
+
+<!-- Navigation -->
+<nav>
+    <div class="nav-inner">
+        <a href="#" class="nav-name">Lily Ottinger <span>周盈莉</span></a>
+        <button class="mobile-menu-btn" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="Toggle menu">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round">
+                <line x1="4" y1="7" x2="20" y2="7"/>
+                <line x1="4" y1="12" x2="20" y2="12"/>
+                <line x1="4" y1="17" x2="20" y2="17"/>
+            </svg>
+        </button>
+        <ul class="nav-links">
+            <li><a href="#about">About</a></li>
+            <li><a href="#writing">Writing</a></li>
+            <li><a href="#experience">Experience</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </div>
+</nav>
+
+<!-- Hero -->
+<section class="hero">
+    <div class="hero-content">
+        <div class="hero-blossom">
+            <!-- Plum/sakura blossom SVG -->
+            <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                <g transform="translate(50,50)">
+                    <ellipse cx="0" cy="-22" rx="13" ry="22" transform="rotate(0)" opacity="0.85"/>
+                    <ellipse cx="0" cy="-22" rx="13" ry="22" transform="rotate(72)" opacity="0.85"/>
+                    <ellipse cx="0" cy="-22" rx="13" ry="22" transform="rotate(144)" opacity="0.85"/>
+                    <ellipse cx="0" cy="-22" rx="13" ry="22" transform="rotate(216)" opacity="0.85"/>
+                    <ellipse cx="0" cy="-22" rx="13" ry="22" transform="rotate(288)" opacity="0.85"/>
+                    <circle cx="0" cy="0" r="6" fill="#F2DFE8"/>
+                </g>
+            </svg>
+        </div>
+        <h1>Lily Ottinger</h1>
+        <div class="chinese-name">周盈莉</div>
+        <p class="tagline">Managing Editor &amp; Taiwan Analyst at ChinaTalk</p>
+    </div>
+    <div class="scroll-indicator">
+        <span>Scroll</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="6 9 12 15 18 9"/>
+        </svg>
+    </div>
+</section>
+
+<!-- About -->
+<section class="about" id="about">
+    <div class="section-inner">
+        <h2 class="section-title">About</h2>
+        <p class="section-title-chinese">關於</p>
+        <div class="section-divider"></div>
+        <p>
+            I write about the political economy of authoritarian states. As <strong>Managing Editor and Taiwan Analyst</strong> for
+            <a href="https://www.chinatalk.media" style="color: var(--sakura); text-decoration: none; font-weight: 500;">ChinaTalk</a>,
+            I cover China, Taiwan, technology, and geopolitics.
+        </p>
+        <p>
+            My work spans original reporting, analysis, and on-the-ground dispatches from across Asia and Central Asia &mdash;
+            from Taipei to Kyrgyzstan, Seoul to Chongqing.
+        </p>
+    </div>
+</section>
+
+<!-- Writing -->
+<section class="writing" id="writing">
+    <div class="section-inner">
+        <h2 class="section-title">Writing</h2>
+        <p class="section-title-chinese">文章</p>
+        <div class="section-divider"></div>
+
+        <div class="articles-grid">
+
+            <!-- 2026 -->
+            <div class="article-year-divider">2026</div>
+
+            <a class="article-item" href="https://www.chinatalk.media/p/goodbye-taiwan" target="_blank">
+                <div class="article-info">
+                    <div class="article-title">Goodbye, Taiwan</div>
+                    <div class="article-subtitle">A diary</div>
+                </div>
+                <div class="article-meta">Mar 11</div>
+            </a>
+
+            <a class="article-item" href="https://www.chinatalk.media/p/chinese-peptides" target="_blank">
+                <div class="article-info">
+                    <div class="article-title">Chinese Peptides</div>
+                    <div class="article-subtitle">A special report!</div>
+                    <div class="article-coauthors">with Irene Zhang, Nick Corvino &amp; Jasmine Sun</div>
+                </div>
+                <div class="article-meta">Feb 20</div>
+            </a>
+
+            <a class="article-item" href="https://www.chinatalk.media/p/how-china-courted-iran" target="_blank">
+                <div class="article-info">
+                    <div class="article-title">How China Courted Iran</div>
+                </div>
+                <div class="article-meta">Jan 12</div>
+            </a>
+
+            <a class="article-item" href="https://www.chinatalk.media/p/why-metas-arvr-dreams-need-chinas-goertek" target="_blank">
+                <div class="article-info">
+                    <div class="article-title">Why Meta's AR/VR Dreams Need China's Goertek</div>
+                    <div class="article-subtitle">An investigation!</div>
+                </div>
+                <div class="article-meta">Jan 7</div>
+            </a>
+
+            <!-- 2025 -->
+            <div class="article-year-divider">2025</div>
+
+            <a class="article-item" href="https://www.chinatalk.media/p/notes-from-korea" target="_blank">
+                <div class="article-info">
+                    <div class="article-title">Notes From Korea</div>
+                    <div class="article-subtitle">Beauty, food, massacres</div>
+                    <div class="article-coauthors">with Irene Zhang</div>
+                </div>
+                <div class="article-meta">Oct 22</div>
+            </a>
+
+            <a class="article-item" href="https://www.chinatalk.media/p/diamonds-are-a-trade-wars-best-friend" target="_blank">
+                <div class="article-info">
+                    <div class="article-title">Diamonds are a Trade War's Best Friend</div>
+                    <div class="article-subtitle">Will diamond export controls burst the AI bubble?</div>
+                    <div class="article-coauthors">with Nick Corvino</div>
+                </div>
+                <div class="article-meta">Oct 17</div>
+            </a>
+
+            <a class="article-item" href="https://www.chinatalk.media/p/taiwan-confronts-wwii" target="_blank">
+                <div class="article-info">
+                    <div class="article-title">Taiwan Confronts its WWII Legacy</div>
+                    <div class="article-subtitle">An exploration</div>
+                    <div class="article-coauthors">with Jordyn Haime</div>
+                </div>
+                <div class="article-meta">Sep 18</div>
+            </a>
+
+            <a class="article-item" href="https://www.chinatalk.media/p/cheating-apps-chinas-latest-tech-export" target="_blank">
+                <div class="article-info">
+                    <div class="article-title">Cheating Apps: China's Latest Tech Export</div>
+                    <div class="article-subtitle">Could a political firestorm be brewing?</div>
+                </div>
+                <div class="article-meta">Sep 8</div>
+            </a>
+
+            <a class="article-item" href="https://www.chinatalk.media/p/notes-on-kyrgyzstan" target="_blank">
+                <div class="article-info">
+                    <div class="article-title">Notes on Kyrgyzstan</div>
+                    <div class="article-subtitle">Lily reports!</div>
+                </div>
+                <div class="article-meta">Aug 25</div>
+            </a>
+
+            <a class="article-item" href="https://www.chinatalk.media/p/ai-education-understanding-the-hype" target="_blank">
+                <div class="article-info">
+                    <div class="article-title">AI Education: Understanding the Hype</div>
+                    <div class="article-subtitle">Is there an edtech revolution in the works?</div>
+                    <div class="article-coauthors">with Irene Zhang</div>
+                </div>
+                <div class="article-meta">Aug 1</div>
+            </a>
+
+            <a class="article-item" href="https://www.chinatalk.media/p/xi-rumors" target="_blank">
+                <div class="article-info">
+                    <div class="article-title">Xi Rumors</div>
+                    <div class="article-subtitle">+ an epic Bill Bishop rant and Politburo Regulations</div>
+                </div>
+                <div class="article-meta">Jul 14</div>
+            </a>
+
+            <a class="article-item" href="https://www.chinatalk.media/p/hovercraft-invasion-labubu-tea" target="_blank">
+                <div class="article-info">
+                    <div class="article-title">Hovercraft Invasion, Labubu, Tea</div>
+                    <div class="article-subtitle">Friday bites!</div>
+                </div>
+                <div class="article-meta">Jun 20</div>
+            </a>
+
+            <a class="article-item" href="https://www.chinatalk.media/p/chinas-hundred-lens-war" target="_blank">
+                <div class="article-info">
+                    <div class="article-title">China's Hundred Lens War</div>
+                    <div class="article-subtitle">Will Chinese AR best Meta?</div>
+                </div>
+                <div class="article-meta">May 28</div>
+            </a>
+
+            <a class="article-item" href="https://www.chinatalk.media/p/manus-chinas-latest-ai-sensation" target="_blank">
+                <div class="article-info">
+                    <div class="article-title">Manus: China's Latest AI Sensation</div>
+                    <div class="article-subtitle">Did a wrapper just best OpenAI and Anthropic?</div>
+                    <div class="article-coauthors">with Jordan Schneider</div>
+                </div>
+                <div class="article-meta">Mar 10</div>
+            </a>
+
+            <a class="article-item" href="https://www.chinatalk.media/p/taiwan-on-trump-zelenskyy" target="_blank">
+                <div class="article-info">
+                    <div class="article-title">Taiwan on Trump-Zelenskyy, Getting Nukes, TSMC Deal</div>
+                    <div class="article-coauthors">with Irene Zhang</div>
+                </div>
+                <div class="article-meta">Mar 5</div>
+            </a>
+
+            <a class="article-item" href="https://www.chinatalk.media/p/xis-hard-tech-avengers" target="_blank">
+                <div class="article-info">
+                    <div class="article-title">Xi's Hard Tech Avengers</div>
+                    <div class="article-subtitle">A Who's Who of the CCP's Favorite Business Elite</div>
+                </div>
+                <div class="article-meta">Feb 21</div>
+            </a>
+
+            <a class="article-item" href="https://www.chinatalk.media/p/noah-smith-on-trump-20-and-asia-future" target="_blank">
+                <div class="article-info">
+                    <div class="article-title">Noah Smith on Trump 2.0 and Asia + Future of the New Tech Right</div>
+                    <div class="article-subtitle">"Xi is prepared to spend that inheritance down"</div>
+                </div>
+                <div class="article-meta">Jan 21</div>
+            </a>
+
+            <a class="article-item" href="https://www.chinatalk.media/p/rednote-uber-eats-in-kinmen" target="_blank">
+                <div class="article-info">
+                    <div class="article-title">RedNote, Uber Eats in Kinmen, Jimmy Carter's Taiwan Legacy, AI EO and More</div>
+                    <div class="article-subtitle">Friday bites!</div>
+                    <div class="article-coauthors">with Yiwen &amp; Jordan Schneider</div>
+                </div>
+                <div class="article-meta">Jan 17</div>
+            </a>
+
+            <!-- 2024 -->
+            <div class="article-year-divider">2024</div>
+
+            <a class="article-item" href="https://www.youtube.com/watch?v=SOlIjJudL3I" target="_blank">
+                <div class="article-info">
+                    <div class="article-title">&#9654; How Taiwan Built the World's Best Healthcare System</div>
+                    <div class="article-subtitle">Script &amp; voiceover &mdash; ChinaTalk YouTube</div>
+                </div>
+                <div class="article-meta">Oct</div>
+            </a>
+
+            <a class="article-item" href="https://www.chinatalk.media/p/how-taiwan-sees-the-chip-war" target="_blank">
+                <div class="article-info">
+                    <div class="article-title">How Taiwan Sees the Chip War</div>
+                    <div class="article-subtitle">The Radiance of Chip Island, presented in English for the first time ever</div>
+                    <div class="article-coauthors">with Arrian Ebrahimi &amp; Nicholas Welch</div>
+                </div>
+                <div class="article-meta">Oct 24</div>
+            </a>
+
+            <a class="article-item" href="https://www.chinatalk.media/p/chinese-exclusion-the-radiance-of" target="_blank">
+                <div class="article-info">
+                    <div class="article-title">Chinese Exclusion, the Radiance of Chip Island, and Xi's Fiscal Bazooka</div>
+                    <div class="article-subtitle">Friday bites!</div>
+                </div>
+                <div class="article-meta">Oct 11</div>
+            </a>
+
+            <a class="article-item" href="https://www.chinatalk.media/p/china-on-the-debate-pt-2" target="_blank">
+                <div class="article-info">
+                    <div class="article-title">China on the Debate Pt. 2</div>
+                    <div class="article-subtitle">Girls who like to laugh will have good luck + Jordan's Notes on Tariffs and WWIII</div>
+                    <div class="article-coauthors">with Jordan Schneider</div>
+                </div>
+                <div class="article-meta">Sep 12</div>
+            </a>
+
+            <a class="article-item" href="https://www.chinatalk.media/p/powering-chinas-data-centers" target="_blank">
+                <div class="article-info">
+                    <div class="article-title">Powering China's Data Centers: Batteries or Nukes?</div>
+                    <div class="article-subtitle">Does a Great Wall of Batteries make any sense?</div>
+                    <div class="article-coauthors">with Caleb Harding</div>
+                </div>
+                <div class="article-meta">Sep 12</div>
+            </a>
+
+            <a class="article-item" href="https://www.chinatalk.media/p/tim-walz-sleeper-agent-taiwan-relations" target="_blank">
+                <div class="article-info">
+                    <div class="article-title">Tim Walz: &#8220;Sleeper Agent,&#8221; Taiwan Relations, and Travel Itineraries</div>
+                    <div class="article-subtitle">Does Walz Believe in the One China Policy?</div>
+                    <div class="article-coauthors">with Jordan Schneider</div>
+                </div>
+                <div class="article-meta">Aug 21</div>
+            </a>
+
+            <a class="article-item" href="https://www.chinatalk.media/p/tim-walz-on-china" target="_blank">
+                <div class="article-info">
+                    <div class="article-title">Tim Walz on China</div>
+                    <div class="article-subtitle">Featuring his 6/4 Wedding Anniversary and the Dalai Lama</div>
+                </div>
+                <div class="article-meta">Aug 6</div>
+            </a>
+
+            <a class="article-item" href="https://www.chinatalk.media/p/china-on-the-assassination-attempt" target="_blank">
+                <div class="article-info">
+                    <div class="article-title">China on the Assassination Attempt</div>
+                    <div class="article-subtitle">Comrade Trump, one-eared nation builder</div>
+                </div>
+                <div class="article-meta">Jul 16</div>
+            </a>
+
+            <a class="article-item" href="https://www.chinatalk.media/p/china-on-the-debate" target="_blank">
+                <div class="article-info">
+                    <div class="article-title">China on the Debate</div>
+                    <div class="article-subtitle">If we don't laugh, we'll cry</div>
+                </div>
+                <div class="article-meta">Jun 30</div>
+            </a>
+
+            <a class="article-item" href="https://www.chinatalk.media/p/is-the-hottest-model-in-china-any-good" target="_blank">
+                <div class="article-info">
+                    <div class="article-title">Is the Hottest Model in China Any Good?</div>
+                    <div class="article-subtitle">Sensetime says their chatbot is better than GPT-4 Turbo. But is it?</div>
+                    <div class="article-coauthors">with Nicholas Welch</div>
+                </div>
+                <div class="article-meta">May 21</div>
+            </a>
+
+            <a class="article-item" href="https://www.chinatalk.media/p/sino-soviet-split-20" target="_blank">
+                <div class="article-info">
+                    <div class="article-title">Sino-Soviet Split 2.0</div>
+                    <div class="article-subtitle">Could views on separatism destroy the Russia-China alliance?</div>
+                    <div class="article-coauthors">with Jordan Schneider</div>
+                </div>
+                <div class="article-meta">Mar 5</div>
+            </a>
+
+        </div>
+    </div>
+</section>
+
+<!-- Experience & Projects -->
+<section class="experience" id="experience">
+    <div class="section-inner">
+        <h2 class="section-title">Experience &amp; Projects</h2>
+        <p class="section-title-chinese">經歷</p>
+        <div class="section-divider"></div>
+
+        <div class="experience-item">
+            <div class="experience-header">
+                <span class="experience-org">Asian Debate League</span>
+                <span class="experience-dates">Aug 2022 &ndash; Aug 2024 &middot; Taipei, Taiwan</span>
+            </div>
+            <div class="experience-role">Policy Debate Instructor</div>
+            <div class="experience-desc">
+                <ul>
+                    <li>Researched and lectured on emerging technology, Russian and Chinese foreign policy, macroeconomics, and US political economy</li>
+                    <li>Taught fundamentals of argument, public speaking, database research, and logical reasoning</li>
+                    <li>Real-time English-to-Mandarin interpreting for ESL students</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="experience-separator"></div>
+
+        <div class="experience-item">
+            <div class="experience-header">
+                <span class="experience-org">Center for Peace and Security Studies</span>
+                <span class="experience-dates">Oct 2020 &ndash; Oct 2021 &middot; Remote</span>
+            </div>
+            <div class="experience-role">Assistant Researcher for Dr. J Andr&eacute;s Gannon</div>
+            <div class="experience-desc">
+                <ul>
+                    <li>Analyzed IISS Military Balance data for publications on burden-sharing within military alliances</li>
+                    <li>Co-authored the codebook of the <a href="https://jandresgannon.com/research" target="_blank">rDMC dataset</a> (global distribution of military capabilities)</li>
+                    <li>Research contributed to <em>Planes, Trains, and Armored Mobiles</em>, published in <a href="https://academic.oup.com/isq/article/67/4/sqad078/7330260" target="_blank">International Studies Quarterly</a> (Vol. 67, Issue 4, Dec 2023)</li>
+                    <li>Authored a research brief on Japan that became the introduction to Dr. Gannon's 2025 paper, <em>Allies as Armaments: Explaining the Specialization of State Military Capabilities</em></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="experience-separator"></div>
+
+        <div class="experience-item">
+            <div class="experience-header">
+                <span class="experience-org">Education</span>
+            </div>
+            <div class="experience-role">University of Kansas &middot; B.A. Mathematics, minor in Russian, certificate in Actuarial Science (2022)</div>
+            <div class="experience-desc">
+                <ul>
+                    <li>Senior project: writing and presenting mathematical proofs in Mandarin</li>
+                    <li>Award-winning policy debater &mdash; top 8 at ADA Nationals (2022, 2020), NJDDT champion (2018)</li>
+                    <li>Departmental honors in French and Russian</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="experience-separator"></div>
+
+        <h3 style="font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; font-weight: 600; color: var(--navy); margin-bottom: 0.2rem;">Projects &amp; Grants</h3>
+        <p class="section-title-chinese" style="margin-bottom: 1.5rem;">項目</p>
+
+        <div class="project-card">
+            <a href="https://taiwansimulatorv1.vercel.app/" target="_blank">
+                <div class="project-tag">Interactive Simulation</div>
+                <div class="project-title">Cross-Strait Crisis: A Strategic Simulation</div>
+                <div class="project-desc">
+                    An interactive geopolitical strategy game simulating decision-making during a potential military crisis between China, Taiwan, and the United States. Players make policy decisions across 20 quarters (2026&ndash;2030), with cascading consequences for military readiness, diplomacy, and crisis escalation. Built with React and Claude API.
+                </div>
+            </a>
+        </div>
+
+        <div class="project-card">
+            <div class="project-tag">Grants</div>
+            <div class="project-title">Emergent Ventures &amp; Tarbell Center for AI Journalism</div>
+            <div class="project-desc">
+                Received grants from Emergent Ventures and the Tarbell Center for AI Journalism for China-related research projects at ChinaTalk.
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<!-- Contact -->
+<section class="contact" id="contact">
+    <div class="section-inner">
+        <h2 class="section-title">Contact</h2>
+        <p class="section-title-chinese">聯絡</p>
+        <div class="section-divider"></div>
+
+        <div class="contact-grid">
+            <div class="contact-item">
+                <span class="contact-label">Email</span>
+                <span class="contact-value"><a href="mailto:lily@chinatalk.media">lily@chinatalk.media</a></span>
+            </div>
+            <div class="contact-item">
+                <span class="contact-label">Publication</span>
+                <span class="contact-value"><a href="https://www.chinatalk.media" target="_blank">chinatalk.media</a></span>
+            </div>
+            <div class="contact-item">
+                <span class="contact-label">LinkedIn</span>
+                <span class="contact-value"><a href="https://www.linkedin.com/in/lily-ottinger/" target="_blank">lily-ottinger</a></span>
+            </div>
+            <div class="contact-item">
+                <span class="contact-label">WeChat</span>
+                <span class="contact-value">void_functi0n</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer>
+    <div class="footer-blossom">
+        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+            <g transform="translate(50,50)">
+                <ellipse cx="0" cy="-22" rx="13" ry="22" transform="rotate(0)" opacity="0.85"/>
+                <ellipse cx="0" cy="-22" rx="13" ry="22" transform="rotate(72)" opacity="0.85"/>
+                <ellipse cx="0" cy="-22" rx="13" ry="22" transform="rotate(144)" opacity="0.85"/>
+                <ellipse cx="0" cy="-22" rx="13" ry="22" transform="rotate(216)" opacity="0.85"/>
+                <ellipse cx="0" cy="-22" rx="13" ry="22" transform="rotate(288)" opacity="0.85"/>
+                <circle cx="0" cy="0" r="6" fill="#2D4470"/>
+            </g>
+        </svg>
+    </div>
+</footer>
+
+<script>
+    // Generate floating sakura petals
+    const petalsContainer = document.getElementById('petals');
+    const petalSVG = `<svg viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><ellipse cx="10" cy="8" rx="5" ry="8" transform="rotate(-15 10 10)"/></svg>`;
+
+    function createPetal() {
+        const petal = document.createElement('div');
+        petal.classList.add('petal');
+        petal.innerHTML = petalSVG;
+        petal.style.left = Math.random() * 100 + '%';
+        petal.style.animationDuration = (Math.random() * 6 + 8) + 's';
+        petal.style.animationDelay = Math.random() * 12 + 's';
+        petal.style.transform = `scale(${Math.random() * 0.5 + 0.5})`;
+        petalsContainer.appendChild(petal);
+    }
+
+    // Create a handful of petals
+    for (let i = 0; i < 12; i++) {
+        createPetal();
+    }
+
+    // Close mobile menu on link click
+    document.querySelectorAll('.nav-links a').forEach(link => {
+        link.addEventListener('click', () => {
+            document.querySelector('.nav-links').classList.remove('open');
+        });
+    });
+</script>
+
+</body>
+</html>
